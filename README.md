@@ -54,7 +54,7 @@ layout: post
 title: "Psycho Tech Blog 소개"
 date: 2026-03-14
 author: ahn
-tags: [intro, culture]
+categories: [intro, culture]
 ---
 
 본문 내용은 여기서부터 작성합니다.
@@ -105,6 +105,7 @@ tags: [intro, culture]
 ├── _posts/          # 블로그 글
 ├── _layouts/        # 레이아웃 템플릿
 ├── _includes/       # 재사용 가능한 HTML 조각들
+├── _data/           # authors 등 YAML 기반 설정/메타데이터
 ├── assets/          # CSS, 이미지 등 정적 리소스
 └── _sass/           # SCSS partials
 ```
