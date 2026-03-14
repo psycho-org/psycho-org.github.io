@@ -2,7 +2,18 @@
 <div class="container">
 	<h1>{{ page.title }}</h1>
 	<h4 class="post-description">{{ page.description }}</h4>
-	<div class="post-date" style="margin-top:20px">
+
+	{%- assign author_id = page.author -%}
+	<div class="post-author" style="margin-top:12px">
+		{% if site.data.authors and site.data.authors[author_id] %}
+			{% assign author = site.data.authors[author_id] %}
+			<span>By {{ author.name }}</span>
+		{% elsif page.author %}
+			<span>By {{ page.author }}</span>
+		{% endif %}
+	</div>
+
+	<div class="post-date" style="margin-top:4px">
 		Published on {{ page.date | date: date_format }}
 	</div>
 	<ul class="post-tags">

@@ -1,150 +1,130 @@
-# texture
+# Psycho Tech Blog
 
-A configurable jekyll theme for simply beautiful blogs.
+Psycho 팀의 기술 블로그 레포지토리입니다.  
+팀원들이 개발 과정에서 얻은 경험과 인사이트를 아티클 형태로 공유합니다.
 
-**Demo**: [samarsault.com/texture](https://samarsault.com/texture)
+원본 테마는 [`texture`](https://github.com/samarsault/texture)를 기반으로 커스터마이징했습니다.
 
-![texture theme preview](/screen1.png)
+---
 
+## Tech Stack
 
-## Installation on Github Pages
+- **Static Site Generator**: [Jekyll](https://jekyllrb.com/)
+- **Theme**: [texture](https://github.com/samarsault/texture) (커스터마이징 버전)
+- **Hosting**: GitHub Pages
+- **Language**: Markdown, HTML, SCSS
 
-Add this line to your site's `_config.yml`:
-```yaml
-remote_theme: samarsault/texture
+---
+
+## Getting Started (로컬 실행)
+
+1. 의존성 설치
+
+```bash
+bundle install
 ```
 
-**NOTE: If you are forking this repo, remove `base_url: /texture` in the `_config.yml` which is required to load the required website assets**
-## Installation
+2. 로컬 서버 실행
 
-Add this line to your Jekyll site's `Gemfile`:
-
-```ruby
-gem "texture"
+```bash
+bundle exec jekyll serve
 ```
 
-And add this line to your Jekyll site's `_config.yml`:
+3. 브라우저에서 접속
 
-```yaml
-theme: texture
+```
+http://localhost:4000
 ```
 
-And then execute:
 
-    $ bundle
+## Writing Posts (글 작성 가이드)
 
-Or install it yourself as:
+새 글은 _posts 디렉터리에 Markdown 파일로 추가합니다.
 
-    $ gem install texture
+파일명 규칙:
 
-## Usage
-
-The "texture" key in _config.yml is used to customize the theme data.
-```yaml
-texture:
-  title: Adam Denisov
-  tagline: Developer. Designer
-  date_format: "%b %-d, %Y"
-
-  social_links:
-    twitter: thelehhman
-    github:  thelehhman
-    linkedIn: in/thelehhman # format: locale/username
+```
+_posts/YYYY-MM-DD-slug.md
+예) _posts/2026-03-14-introducing-psycho-tech-blog.md
 ```
 
-**Styling**
+```md
+---
+layout: post
+title: "Psycho Tech Blog 소개"
+date: 2026-03-14
+author: ahn
+tags: [intro, culture]
+---
 
-Multiple header styles are supported using the "style" property under texture in `_config.yml`.
+본문 내용은 여기서부터 작성합니다.
 
-```yaml
-texture:
-  style: [yellow|red|black|blue|green|purple]
 ```
 
-For example, the blue style looks like this:
+### Author 관리
 
-![texture theme blue](/screen2.png)
+- author 필드는 글 작성자 ID를 의미합니다.
+- (선택) _data/authors.yml을 사용해 작성자 정보를 관리할 수 있습니다.
+
+## Configuration
+
+주요 설정은 _config.yml에서 관리합니다.
+
+- 사이트 메타 정보
+    - title: 블로그 이름
+    - author: 대표 조직명 (예: Psycho Engineering)
+    - email: 연락용 이메일
+    - description: 블로그 한 줄 소개
+- 테마 설정 (texture 블록)
+    - style: 색상 테마 (black, blue, green 등)
+    - showNav: 상단 네비게이션 표시 여부
+    - social_links: 푸터에 노출할 소셜 링크 (GitHub, RSS 등)
+
+자세한 테마 옵션은 [HELP.md](./HELP.md) 또는 help 문서를 참고하세요.
 
 
-**Texture Picker**
+## Deployment
 
-You can toggle the texture picker to show/experiment various textures on your site using the showPicker variable. Remember to make it `false` for production.
 
-```yaml
-texture:
-  showPicker: [false|true] # show the texture selector(development purposes)
+이 레포는 GitHub Pages를 통해 배포됩니다.
+
+- 브랜치: main
+- (예시) Pages 설정:
+    - Settings → Pages → Deploy from a branch
+    - Branch: main / Folder: / (root)
+
+실제 배포 URL은 GitHub Pages 설정을 참고하세요.
+
+## Project Structure
+
+간단한 디렉터리 구조는 다음과 같습니다.
+
 ```
-
-**Comments (Disqus)**
-
-Comments on posts can be enabled by specifying your disqus_shortname under texture in `_config.yml`. For example,
-```yaml
-texture:
-  disqus_shortname: games
+.
+├── _config.yml      # Jekyll & theme 설정
+├── _posts/          # 블로그 글
+├── _layouts/        # 레이아웃 템플릿
+├── _includes/       # 재사용 가능한 HTML 조각들
+├── assets/          # CSS, 이미지 등 정적 리소스
+└── _sass/           # SCSS partials
 ```
-
-**Google Analytics**
-
-It can be enabled by specifying your analytics id under texture in `_config.yml`
-```yaml
-texture:
-  analytics_id: '< YOUR ID >'
-```
-
-**Excerpts**
-
-Excerpts can be enabled by adding the following line to your `_config.yml`
-```yaml
-show_excerpts: true
-```
-
-**Toggle Navbar**
-
-```yaml
-texture:
-  showNav: true
-```
-
-**Navigation**
-
-After setting `showNav` to true navigation can be built by adding the following to your `_config.yml`
-
-```yaml
-texture:
-  navigation:
-    - title: My Work
-      url: "/my-work"
-    - title: Resume
-      url: "/resume"
-```
-
-**Layouts**
-
-- Home
-- Page
-- Post
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/samarsault/texture. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+팀원 누구나 PR을 통해 글 추가 및 개선을 제안할 수 있습니다.
 
-## Development
+- 새로운 글 작성 시:
+    - `_posts`에 Markdown 파일 추가
+    - 로컬에서 bundle exec jekyll serve로 확인
+    - PR 생성 시 간단한 설명과 스크린샷(선택)을 함께 남겨주세요.
+- 코드/스타일 수정 시:
+    - 가능하면 작은 단위로 PR을 나누어 주세요.
+    - 커밋 메시지는 Conventional Commits 규칙을 가급적 따릅니다.  
+        - 예: feat: add favicon and refine Psycho tech blog base configuration
 
-To set up your environment to develop this theme, run `bundle install`.
+## License & Credits
 
-Your theme is setup just like a normal Jekyll site! To test your theme, run `bundle exec jekyll serve` and open your browser at `http://localhost:4000`. This starts a Jekyll server using your theme. Add pages, documents, data, etc. like normal to test your theme's contents. As you make modifications to your theme and to your content, your site will regenerate and you should see the changes in the browser after a refresh, just like normal.
 
-When your theme is released, only the files in `_layouts`, `_includes`, `_sass` and `assets` tracked with Git will be bundled.
-To add a custom directory to your theme-gem, please edit the regexp in `texture.gemspec` accordingly.
+- Theme: [texture](https://github.com/samarsault/texture) (MIT License)
+- 이 레포의 커스텀 코드와 글 내용은 Psycho 팀에 귀속됩니다.
 
-## Donation
-If this project help you reduce time to develop, you can give me a cup of coffee :) 
-
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/thelehhman)
-
-## License
-
-The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## More Themes
-[plainwhite](https://github.com/samarsault/plainwhite-jekyll)
